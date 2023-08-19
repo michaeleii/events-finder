@@ -7,12 +7,17 @@ import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
 import { API_URL } from "@/helpers/constants";
 import { EventItem } from "@/interfaces/Event";
+import Head from "next/head";
 
 function EventDetailsPage({
   event,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <main className="relative">
+      <Head>
+        <title>{event.name}</title>
+        <meta name="description" content={`${event.location}`} />
+      </Head>
       <div className="[@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,hsl(var(--s))_4%,color-mix(in_oklch,hsl(var(--sf)),hsl(var(--pf)))_22%,hsl(var(--p))_45%,color-mix(in_oklch,hsl(var(--p)),hsl(var(--a)))_67%,hsl(var(--a))_100.2%)] h-80 p-10 absolute w-full">
         <div>
           <h1 className="text-center text-3xl  sm:text-7xl drop-shadow-lg font-bold text-secondary-content mb-14">

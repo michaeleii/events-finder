@@ -5,12 +5,17 @@ import FilterForm from "@/components/FilterForm";
 
 import { API_URL } from "@/helpers/constants";
 import { EventItem } from "@/interfaces/Event";
+import Head from "next/head";
 
 function EventsPage({
   events,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <main className="max-w-4xl mx-auto p-5">
+      <Head>
+        <title>All Events</title>
+        <meta name="description" content="Find fun and interesting events." />
+      </Head>
       <div className="mb-20 mt-5">
         <FilterForm />
       </div>
