@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "@/helpers/constants";
 import { EventItem } from "@/interfaces/Event";
+import Head from "next/head";
 
 function FilteredEventsPage() {
   const router = useRouter();
@@ -26,6 +27,10 @@ function FilteredEventsPage() {
 
   return (
     <main className="max-w-4xl mx-auto p-5">
+      <Head>
+        <title>Filtered Events</title>
+        <meta name="description" content={`All events for ${month} ${year}`} />
+      </Head>
       <div className="mb-20 mt-5">
         <h1 className="text-5xl font-bold text-center">
           {month} {year}
