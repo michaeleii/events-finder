@@ -1,16 +1,27 @@
 import EventCard from "@/components/EventCard";
-import { events } from "@/data/events";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { API_URL } from "@/helpers/constants";
+import { EventItem } from "@/interfaces/Event";
 
 function FilteredEventsPage() {
   const router = useRouter();
-  if (!(router.query.slug instanceof Array)) return null;
-  const [year, month] = router.query.slug;
+  const { isLoading, data: filteredEvents } = useQuery({
+    queryKey: ["events"],
+    queryFn: async () => {
+      if (!(router.query.slug instanceof Array)) return undefined;
+      const [year, month] = router.query.slug;
+      const res = await fetch(`${API_URL}/events?year=${year}&month=${month}`);
+      const data: EventItem[] = await res.json();
+      return data;
+    },
+  });
 
-  const filteredEvents = events.filter(
-    (event) => event.date.includes(year) && event.date.includes(month)
-  );
+  if (isLoading) return <p>Loading...</p>;
+
+  if (!(router.query.slug instanceof Array)) return undefined;
+  const [year, month] = router.query.slug;
 
   return (
     <main className="max-w-4xl mx-auto p-5">
@@ -20,7 +31,7 @@ function FilteredEventsPage() {
         </h1>
       </div>
       <ul className="space-y-5 max-w-3xl mx-auto">
-        {filteredEvents.length > 0 ? (
+        {filteredEvents && filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
             <li key={event.id}>
               <EventCard event={event} />

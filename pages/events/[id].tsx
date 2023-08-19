@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import type {
   InferGetStaticPropsType,
   GetStaticProps,
@@ -50,15 +49,15 @@ function EventDetailsPage({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`${API_URL}/events`);
-  const events: EventItem[] = await res.json();
-  const paths = events.map((event) => ({
+  const res = await fetch(`${API_URL}/events?_limit=2`);
+  const featuredEvents: EventItem[] = await res.json();
+  const paths = featuredEvents.map((event) => ({
     params: { id: event.id.toString() },
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -68,7 +67,7 @@ export const getStaticProps: GetStaticProps<{
   const res = await fetch(`${API_URL}/events/${context.params?.id}`);
   const event: EventItem = await res.json();
 
-  return { props: { event } };
+  return { props: { event }, revalidate: 30 };
 };
 
 export default EventDetailsPage;
