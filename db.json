@@ -4,8 +4,6 @@
       "id": 1,
       "name": "Programming for Everyone",
       "date": "May 12, 2023",
-      "month": "May",
-      "year": "2023",
       "location": "Somestreet 25 12345 San Somewhere",
       "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=90"
     },
@@ -13,8 +11,6 @@
       "id": 2,
       "name": "Networking for Introverts",
       "date": "May 21, 2024",
-      "month": "May",
-      "year": "2024",
       "location": "Somestreet 25 12345 San Somewhere",
       "image": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=90"
     },
@@ -22,8 +18,6 @@
       "id": 3,
       "name": "Networking for Extroverts",
       "date": "May 21, 2025",
-      "month": "May",
-      "year": "2025",
       "location": "Somestreet 25 12345 San Somewhere",
       "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=90"
     }

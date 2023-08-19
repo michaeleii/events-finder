@@ -7,21 +7,22 @@ import { EventItem } from "@/interfaces/Event";
 
 function FilteredEventsPage() {
   const router = useRouter();
-  const { isLoading, data: filteredEvents } = useQuery({
+  const { isLoading, data: events } = useQuery({
     queryKey: ["events"],
     queryFn: async () => {
-      if (!(router.query.slug instanceof Array)) return undefined;
-      const [year, month] = router.query.slug;
-      const res = await fetch(`${API_URL}/events?year=${year}&month=${month}`);
+      const res = await fetch(`${API_URL}/events`);
       const data: EventItem[] = await res.json();
       return data;
     },
   });
 
   if (isLoading) return <p>Loading...</p>;
-
   if (!(router.query.slug instanceof Array)) return undefined;
   const [year, month] = router.query.slug;
+
+  const filteredEvents = events?.filter(
+    (event) => event.date.includes(year) && event.date.includes(month)
+  );
 
   return (
     <main className="max-w-4xl mx-auto p-5">
