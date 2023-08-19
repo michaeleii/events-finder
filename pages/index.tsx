@@ -2,7 +2,7 @@ import type { InferGetStaticPropsType, GetStaticProps } from "next";
 
 import EventCard from "@/components/EventCard";
 import { API_URL } from "@/helpers/constants";
-import { Event } from "@/interfaces/Event";
+import { EventItem } from "@/interfaces/Event";
 
 function Homepage({
   featuredEvents,
@@ -21,10 +21,10 @@ function Homepage({
 }
 
 export const getStaticProps: GetStaticProps<{
-  featuredEvents: Event[];
+  featuredEvents: EventItem[];
 }> = async () => {
   const res = await fetch(`${API_URL}/events?_limit=2`);
-  const featuredEvents = await res.json();
+  const featuredEvents: EventItem[] = await res.json();
   return {
     props: {
       featuredEvents,

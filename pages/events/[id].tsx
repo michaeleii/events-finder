@@ -1,16 +1,17 @@
-import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
-import { events } from "@/data/events";
+import type {
+  InferGetStaticPropsType,
+  GetStaticProps,
+  GetStaticPaths,
+} from "next";
+import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
 
-function EventDetailsPage() {
-  const router = useRouter();
-  const eventId = Number(router.query.id);
+import { API_URL } from "@/helpers/constants";
+import { EventItem } from "@/interfaces/Event";
 
-  const event = events.find((event) => event.id === eventId);
-  console.log(event);
-  if (!event) {
-    return null;
-  }
+function EventDetailsPage({
+  event,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <main className="relative">
       <div className="[@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,hsl(var(--s))_4%,color-mix(in_oklch,hsl(var(--sf)),hsl(var(--pf)))_22%,hsl(var(--p))_45%,color-mix(in_oklch,hsl(var(--p)),hsl(var(--a)))_67%,hsl(var(--a))_100.2%)] h-80 p-10 absolute w-full">
@@ -47,4 +48,27 @@ function EventDetailsPage() {
     </main>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${API_URL}/events`);
+  const events: EventItem[] = await res.json();
+  const paths = events.map((event) => ({
+    params: { id: event.id.toString() },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<{
+  event: EventItem;
+}> = async (context) => {
+  const res = await fetch(`${API_URL}/events/${context.params?.id}`);
+  const event: EventItem = await res.json();
+
+  return { props: { event } };
+};
+
 export default EventDetailsPage;
