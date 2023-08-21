@@ -8,6 +8,7 @@ import { CalendarIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import { API_URL } from "@/helpers/constants";
 import { EventItem } from "@/interfaces/Event";
 import Head from "next/head";
+import Image from "next/image";
 
 function EventDetailsPage({
   event,
@@ -25,10 +26,12 @@ function EventDetailsPage({
           </h1>
           <div className="card p-5 card-side max-w-4xl bg-neutral items-center mx-auto">
             <figure>
-              <img
+              <Image
                 src={event.image}
+                width={340}
+                height={250}
                 alt=""
-                className="mask mask-circle h-[250px] hidden sm:block"
+                className="mask mask-circle hidden sm:block"
               />
             </figure>
             <div className="card-body space-y-5 my-auto">
