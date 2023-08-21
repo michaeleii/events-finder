@@ -25,13 +25,13 @@ function EventDetailsPage({
             {event.name}
           </h1>
           <div className="card p-5 card-side max-w-4xl bg-neutral items-center mx-auto">
-            <figure>
+            <figure className="sm:w-[400px] w-0">
               <Image
                 src={event.image}
                 width={340}
                 height={250}
                 alt=""
-                className="mask mask-circle hidden sm:block"
+                className="mask mask-circle"
               />
             </figure>
             <div className="card-body space-y-5 my-auto">
