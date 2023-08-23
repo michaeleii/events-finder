@@ -20,14 +20,14 @@ function NewsletterForm() {
         Sign up for to stay updated!
       </h2>
       <div className="form-control">
-        <div className="input-group justify-center">
+        <div className="join justify-center">
           <input
             type="text"
             ref={emailInputRef}
             placeholder="Enter your email address"
-            className="input input-bordered"
+            className="input input-bordered join-item"
           />
-          <button className="btn btn-secondary">Register</button>
+          <button className="btn btn-secondary join-item">Register</button>
         </div>
       </div>
     </form>
