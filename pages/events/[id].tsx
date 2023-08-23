@@ -12,11 +12,12 @@ import { useState } from "react";
 import CommentsForm from "@/components/CommentsForm";
 import CommentList from "@/components/CommentList";
 import { Comment } from "@/interfaces/Comment";
+import useComments from "@/hooks/useComments";
 
 function EventDetailsPage({
   event,
-  comments,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { comments, isLoading } = useComments();
   const [showComments, setShowComments] = useState(false);
   return (
     <main className="relative">
@@ -47,8 +48,10 @@ function EventDetailsPage({
             {showComments && <CommentsForm />}
             {showComments && (
               <div className="my-10">
-                <h2 className="text-2xl font-bold">Comments</h2>
-                <CommentList comments={comments} />
+                {comments && comments.length === 0 && (
+                  <p className="text-center">There are no comments.</p>
+                )}
+                {comments && <CommentList comments={comments} />}
               </div>
             )}
           </div>
@@ -73,15 +76,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<{
   event: EventItem;
-  comments: Comment[];
 }> = async (context) => {
   let res = await fetch(`${API_URL}/events/${context.params?.id}`);
   const event: EventItem = await res.json();
 
-  res = await fetch(`${API_URL}/comments/`);
-  const comments: Comment[] = await res.json();
-
-  return { props: { event, comments }, revalidate: 30 };
+  return { props: { event }, revalidate: 30 };
 };
 
 export default EventDetailsPage;

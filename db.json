@@ -21,19 +21,5 @@
       "location": "Somestreet 25 12345 San Somewhere",
       "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=90"
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "johndoe@email.com",
-      "comment": "This is a comment"
-    },
-    {
-      "id": 2,
-      "name": "Jane Doe",
-      "email": "janedoe@email.com",
-      "comment": "This is another comment"
-    }
   ]
 }
