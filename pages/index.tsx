@@ -4,6 +4,7 @@ import EventCard from "@/components/EventCard";
 import { API_URL } from "@/helpers/constants";
 import { EventItem } from "@/interfaces/Event";
 import Head from "next/head";
+import NewsletterForm from "@/components/NewsletterForm";
 
 function Homepage({
   featuredEvents,
@@ -14,21 +15,7 @@ function Homepage({
         <title>Events Finder</title>
         <meta name="description" content="Find fun and interesting events." />
       </Head>
-      <form action="" className="my-10">
-        <h2 className="text-3xl font-bold text-center mb-5">
-          Sign up for to stay updated!
-        </h2>
-        <div className="form-control">
-          <div className="input-group justify-center">
-            <input
-              type="text"
-              placeholder="Enter your email address"
-              className="input input-bordered"
-            />
-            <button className="btn">Register</button>
-          </div>
-        </div>
-      </form>
+      <NewsletterForm />
       <ul className="space-y-5 max-w-3xl mx-auto mt-10">
         {featuredEvents.map((event) => (
           <li key={event.id}>
